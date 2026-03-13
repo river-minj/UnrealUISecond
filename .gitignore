@@ -1,0 +1,14 @@
+# Visual Studio
+.vs/
+*.sln
+*.db
+*.ipch
+*.suo
+
+# Unreal auto-generated
+Second/Binaries/
+Second/Intermediate/
+Second/DerivedDataCache/
+Second/Saved/
+Second/Build/
+Second/Backup*/
