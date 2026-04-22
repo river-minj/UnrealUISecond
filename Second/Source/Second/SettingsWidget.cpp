@@ -70,3 +70,9 @@ void USettingsWidget::OnBackButtonClicked()
 {
     DeactivateWidget();
 }
+
+bool USettingsWidget::NativeOnHandleBackAction()
+{
+    DeactivateWidget();
+    return true;
+}

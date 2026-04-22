@@ -34,6 +34,8 @@ protected:
     UFUNCTION()
     void OnBackButtonClicked();
 
+    virtual bool NativeOnHandleBackAction() override;
+
     UPROPERTY(meta = (BindWidget))
     USlider* BGMSlider;
 

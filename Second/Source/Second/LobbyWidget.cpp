@@ -117,3 +117,10 @@ UCommonActivatableWidgetContainerBase* ULobbyWidget::FindStackFromOuter() const
     }
     return nullptr;
 }
+
+bool ULobbyWidget::NativeOnHandleBackAction()
+{
+    DeactivateWidget();
+
+	return true;
+}
