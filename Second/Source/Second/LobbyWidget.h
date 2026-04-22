@@ -12,6 +12,11 @@
 
 class UButton;
 class UTextBlock;
+class UWidgetSwitcher;
+class UListView;
+class UTileView;
+class UCommonActivatableWidgetContainerBase;
+
 
 UCLASS()
 class SECOND_API ULobbyWidget : public UCommonActivatableWidget
@@ -24,13 +29,44 @@ public:
 
 protected:
 	UFUNCTION()
-		void OnBackButtonClicked();
+	void OnShopButtonClicked();
 
-	UPROPERTY(meta = (BindWidget))
-	UButton* BackButton;
+	UFUNCTION()
+	void OnInventoryButtonClicked();
 
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* LobbyText;
+	UFUNCTION()
+	void OnSettingsButtonClicked();
 
+	UFUNCTION()
+	void OnBackButtonClicked();
+
+    UPROPERTY(meta = (BindWidget))
+    UButton* ShopButton;
+
+    UPROPERTY(meta = (BindWidget))
+    UButton* InventoryButton;
+
+    UPROPERTY(meta = (BindWidget))
+    UButton* SettingsButton;
+
+    UPROPERTY(meta = (BindWidget))
+    UButton* BackButton;
+
+    UPROPERTY(meta = (BindWidget))
+    UWidgetSwitcher* ContentSwitcher;
+
+    UPROPERTY(meta = (BindWidget))
+    UListView* ShopListView;
+
+    UPROPERTY(meta = (BindWidget))
+    UTileView* InventoryTileView;
+
+    UPROPERTY(EditDefaultsOnly, Category = "UI")
+    TSubclassOf<UCommonActivatableWidget> SettingsWidgetClass;
+
+private:
+    void PopulateShopItems();
+    void PopulateInventoryItems();
+    UCommonActivatableWidgetContainerBase* FindStackFromOuter() const;
 
 };

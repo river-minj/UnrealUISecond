@@ -21,13 +21,36 @@ void UTitleScreenWidget::NativeConstruct()
 
 void UTitleScreenWidget::OnStartButtonClicked()
 {
-    UCommonActivatableWidgetContainerBase* Stack = FindStackFromOuter();
-
-    if (Stack && LobbyWidgetClass)
+    // GetParent() 체인
+    UE_LOG(LogTemp, Warning, TEXT("=== GetParent() 체인 ==="));
+    UWidget* Parent = GetParent();
+    if (Parent)
     {
-        Stack->AddWidget(LobbyWidgetClass);
+        UE_LOG(LogTemp, Warning, TEXT("Parent: %s (%s)"), *Parent->GetName(), *Parent->GetClass()->GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Parent: nullptr (없음!)"));
+    }
+
+    // GetOuter() 체인
+    UE_LOG(LogTemp, Warning, TEXT("=== GetOuter() 체인 ==="));
+    UObject* Current = GetOuter();
+    while (Current)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Outer: %s (%s)"), *Current->GetName(), *Current->GetClass()->GetName());
+        Current = Current->GetOuter();
     }
 }
+//void UTitleScreenWidget::OnStartButtonClicked()
+//{
+//	UCommonActivatableWidgetContainerBase* Stack = FindStackFromOuter();
+//
+//	if (Stack && LobbyWidgetClass)
+//	{
+//		Stack->AddWidget(LobbyWidgetClass);
+//	}
+//}
 
 UCommonActivatableWidgetContainerBase* UTitleScreenWidget::FindStackFromOuter() const
 {
